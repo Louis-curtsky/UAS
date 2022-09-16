@@ -17,6 +17,7 @@ a {
 }
 
 .Logo{
+    display: inline-flex;
     height: 70px;
 }
 
@@ -28,14 +29,15 @@ a {
 }
 
 header {
-    display: flex;
+    display: inline-flex;
 /*     justify-content: space-between; */
     align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;}
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
 main {
-    min-height: 250px;
+    min-height: auto;
     display: flex;
     align-items: center;
 }
@@ -43,6 +45,7 @@ main {
 .cards {
     display: block;
     justify-content: space-between;
+
     text-align: center;
     min-width: 600px;
 }
