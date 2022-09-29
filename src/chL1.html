@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Check list part 1</title>
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.8/purify.min.js"></script>
+</head>
+<body>
+    <h1>Check list part 1</h1>
+    <form>
+        <!-- Drone types - edit drones here -->
+        <select id="selDroneType">
+            <option selected value="">-- Choose drone type --</option>
+            <option value="MavicPro">Mavic Pro</option>
+            <option value="MavicDual">Mavic 2 Enterprise Dual</option>
+            <option value="MavicAdvanced">Mavic 2 Enterprise Advanced</option>
+            <option value="Phantom4">Phantom 4</option>
+            <option value="M30">M30</option>
+            <option value="M300RTK">M300RTK</option>
+        </select>
+        <br /><br />
+        <!-- Sensors - edit sensors here -->
+        <select id="selSensor">
+            <option selected value="">-- Choose sensor --</option>
+            <option value="12MPRGBkamera">12MP RGB kamera</option>
+            <option value="12MPRGB/IR">12MP RGB/IR</option>
+            <option value="12MPRGB/Termografisk">12MP RGB/Termografisk</option>
+            <option value="20MPRGB">20MP RGB</option>
+            <option value="H20T">H20T</option>
+            <option value="H20T">H20</option>
+        </select>
+        <br /><br />
+     
+        <label data-phrase-id="serialnumber">Serial number</label>
+        <input type="text" id="serialnumber" /><br />
+        <label data-phrase-id="weight">Weight</label>
+        <input type="number" id="weight" /><br /><br />
+        <label data-phrase-id="zone">Zone for the flight</label>
+        <input type="file" id="zone" accept=".kml"/><br /><br />
+
+        <select id="selMission">
+            <option selected value="">-- Choose type of mission --</option>
+            <option value="open">Open</option>
+            <option value="specific">Specific</option>
+            <option value="certified">Certified</option>
+        </select>
+        <br /><br />
+
+        <label data-phrase-id="operator">UAS Operator</label>
+        <input type="text" id="operator" />
+        <br /><br />  
+        
+        <label data-phrase-id="pilot">Pilot</label>
+        <input type="text" id="pilot" />
+        <br /><br />
+
+        <h1 data-phrase-id="daybeforeflight">Day before flight</h1>
+  
+        <label data-phrase-id="airspace">Air space</label>
+        <input type="text" id="airspace" /><br />
+
+        <label data-phrase-id="weather">Weather</label>
+        <input type="text" id="weather" /><br />
+
+        <label data-phrase-id="temperature">Temperature</label>
+        <input type="text" id="temperature" /><br />
+
+        <label data-phrase-id="wind">Wind</label>
+        <input type="text" id="wind" /><br />
+
+        <br />
+        <label data-phrase-id="updateprograms">Update programs</label>
+        <input type="text" id="updateprograms" /><br />
+
+        <label data-phrase-id="routeplan">Route/area planning</label>
+        <input type="text" id="routeplan" /><br />
+
+        <label data-phrase-id="examinethearea">Examine the area for obstacles</label>
+        <input type="text" id="examinethearea" /><br />
+
+
+        <br />
+        <input type="checkbox" id="storyboard" name="storyboard" value="Yes" />
+        <label  for="storyboard" data-phrase-id="storyboard">Storyboard/picture list</label><br />
+        
+        <input type="checkbox" id="permits" value="Yes" />
+        <label   data-phrase-id="permits">Permits have been obtained</label><br />
+        
+        <input type="checkbox" id="checknotam" value="Yes" />
+        <label   data-phrase-id="checknotam">Check NOTAM/AIP/DUP</label><br />
+
+        
+        <br />
+        <input type="checkbox" id="controlscharged" value="Yes" />
+        <label   data-phrase-id="controlscharged">Controls charged</label><br />
+        
+        <input type="checkbox" id="groundstationcharged" value="Yes" />
+        <label   data-phrase-id="groundstationcharged">Groundstation charged</label><br />
+        
+        <input type="checkbox" id="materialpacked" value="Yes" />
+        <label   data-phrase-id="materialpacked">Material packed</label><br />
+
+        <input type="checkbox" id="firstaidpacked" value="Yes" />
+        <label   data-phrase-id="firstaidpacked">First aid packed</label><br />
+
+        <h1 data-phrase-id="direktconnection">In direct connection to flight</h1>
+        <input type="checkbox" id="uav" value="Yes"  />
+        <label   data-phrase-id="uav">UAV</label><br />
+        
+        <input type="checkbox" id="batteries" value="Yes"  />
+        <label   data-phrase-id="batteries">Batteries</label><br />
+        
+        <input type="checkbox" id="sdcard" value="Yes"  />
+        <label   data-phrase-id="sdcard">SD card</label><br />
+
+        <input type="checkbox" id="cables" value="Yes"  />
+        <label   data-phrase-id="cables">Cables</label><br />
+        
+        <input type="checkbox" id="chargers" value="Yes"  />
+        <label   data-phrase-id="chargers">Chargers</label><br />
+        
+        <input type="checkbox" id="security" value="Yes"  />
+        <label   data-phrase-id="security">Security</label><br />
+        <br />
+    </form>
+    <button type="submit" class="btn btn-primary" onclick="saveFile()" data-phrase-id="savepdf">Save check list part 1</button><br /><br />
+ 
+    <a href="/check1.html">Part 1</a><br />
+    <a href="/check2.html">Part 2</a><br />
+    <a href="/check3.html">Part 3</a><br />
+
+<script>
+    //  Save the info the users have entered into a pdf-file
+function saveFile(){
+    // Get the data from each element in the form.
+    var readytosave = true;
+    const dronetype = document.getElementById('selDroneType');
+    const serialnumber = document.getElementById('serialnumber');
+    const sensor = document.getElementById('selSensor');
+    const weight = document.getElementById('weight');
+    const zone = document.getElementById("zone").files[0].name;
+    const mission = document.getElementById('selMission');
+    const operator = document.getElementById('operator');
+    const pilot = document.getElementById('pilot');
+    const airspace = document.getElementById('airspace');
+    const weather = document.getElementById('weather');
+    const temperature = document.getElementById('temperature');
+    const wind = document.getElementById('wind');
+    const updateprograms = document.getElementById('updateprograms');
+    const routeplan = document.getElementById('routeplan');
+    const examinethearea = document.getElementById('examinethearea');
+    const storyboard = document.getElementById('storyboard');
+    const permits = document.getElementById('permits');
+    const checknotam = document.getElementById('checknotam');
+    const controlscharged = document.getElementById('controlscharged');
+    const groundstationcharged = document.getElementById('groundstationcharged');
+    const materialpacked = document.getElementById('materialpacked');
+    const firstaidpacked = document.getElementById('firstaidpacked');
+    const uav = document.getElementById('uav');
+    const batteries = document.getElementById('batteries');
+    const sdcard = document.getElementById('sdcard');
+    const cables = document.getElementById('cables');
+    const chargers = document.getElementById('chargers');
+    const security = document.getElementById('security');
+     
+    // Don't download the file if any fields have been left blank 
+    if (
+        !dronetype.value ||
+        !serialnumber.value ||
+        !sensor.value ||
+        !weight.value ||
+        !zone ||
+        !mission.value ||
+        !operator.value ||
+        !pilot.value ||
+        !airspace.value ||
+        !weather.value ||
+        !temperature.value ||
+        !wind.value ||
+        !updateprograms.value ||
+        !routeplan.value ||
+        !examinethearea.value
+    ){  
+        readytosave = false;
+        alert("All controls must have been done before saving."); 
+    }
+
+    // Don't download the file if any checkbox have been left unchecked
+    if (
+        storyboard.checked === false ||
+        permits.checked === false ||
+        checknotam.checked === false ||
+        controlscharged.checked === false ||
+        groundstationcharged.checked === false ||
+        materialpacked.checked === false ||
+        firstaidpacked.checked === false ||
+        uav.checked === false ||
+        batteries.checked === false ||
+        sdcard.checked === false ||
+        cables.checked === false ||
+        chargers.checked === false ||
+        security.checked === false
+    ){
+        readytosave = false;
+        alert("All checks must have been done before saving.");
+    }
+
+    if (readytosave === false) { return }
+
+    // This variable stores all the data as it will be presented in the file
+    let data = 
+        '<h1>Check List</h1>' + 
+        '<h2>Check List part 1</h2>' +
+        'Drone type: ' + dronetype.value + '</br>' + 
+        'Serial number: ' + serialnumber.value + ' </br>' + 
+        'Sensor: ' + sensor.value + '</br>' + 
+        'Weight: ' + weight.value + '</br>' + 
+        '</br>Zone for the flight: ' + zone + ' </br>' +
+        'Type of mission: ' + mission.value + ' </br>' +
+        '</br>UAS Operator: ' + operator.value + '</br>' +
+        'Pilot: ' + pilot.value + ' </br>' +
+
+        '</br><b>Day before flight</b></br>' +
+        'Air space: ' + airspace.value + ' </br>' +
+        'Weather: ' + weather.value + '</br>' +
+        'Temperature: ' + temperature.value + ' </br>' +
+        'Wind: ' + wind.value + ' </br>' +
+        '</br>Update programs: ' + updateprograms.value + ' </br>' +
+        'Route/area planning: ' + routeplan.value + ' </br>' +
+        'Examine the area for obstacles: ' + examinethearea.value + '</br>' +
+        '</br>Storyboard/picture list: ' + storyboard.value + ' </br>' +
+        'Permits have been obtained: ' + permits.value + ' </br>' +
+        'Check NOTAM: ' + checknotam.value + '</br>' +
+        '</br>Controls charged: ' + controlscharged.value + ' </br>' +
+        'Groundstation charged: ' + groundstationcharged.value + ' </br>' +
+        'Material packed: ' + materialpacked.value + ' </br>' +
+        'First aid packed: ' + firstaidpacked.value + ' </br>' +
+
+        '</br><b>In direct connection to flight</b></br>' +
+        'UAV: ' + uav.value + '</br>' +
+        'Batteries: ' + batteries.value + '</br>' +
+        'SD card: ' + sdcard.value + '</br>' +
+        'Cables: ' + cables.value + '</br>' +
+        'Chargers: ' + chargers.value + '</br>' +
+        'Security: ' + security.value + '</br>' ;
+    
+    //Construct the filename with todays date
+    var month =new Date(); //months from 1-12
+    month = month.getMonth()+1;
+    var day = new Date();
+    day = day.getUTCDate();
+    var year = new Date();
+    year = year.getUTCFullYear();
+    newdate = year + "_" + month + "_" + day;
+    const sFileName = newdate + '_part1.pdf'; // The file to save the data.
+
+    // The format of the file
+    const pageFormat = 'a4';
+    const pageOrient = 'p';
+    let pdfOptions = {
+    compress:true,
+    format:pageFormat,
+    hotfixes:['px_scaling'],
+    orientation:pageOrient,
+    unit:'px'
+    };
+
+    window.html2canvas = html2canvas;
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF(pdfOptions);
+    const pageMarginX = 60;
+    const pageMarginY = 90;
+    const pageWidth   = doc.internal.pageSize.width - (pageMarginX * 2);
+    
+    new jsPDF(pdfOptions).html(data,{
+    autoPaging:'text',
+    margin:[pageMarginY,pageMarginX,pageMarginY,pageMarginX],
+    width:pageWidth,
+    windowWidth:pageWidth,
+    callback:res => {
+        // add pages that are required by the rendered HTML (start with page 2)
+        for(let i = 2, j = res.internal.getNumberOfPages(); i <= j; i++) {
+        doc.addPage(pageFormat,pageOrient);
+        }
+
+        // render document proper
+        doc.html(data,{
+        autoPaging:'text',
+        margin:[pageMarginY,pageMarginX,pageMarginY,pageMarginX],
+        width:pageWidth,
+        windowWidth:pageWidth,
+        callback:function() {
+            doc.save(sFileName);
+        }
+        });
+    }
+    });
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,1388 @@
+<style>
+    th{background-color: #dddddd}
+</style>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Checklist part 2</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.4.0"></script> 
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.8/purify.min.js"></script>
+</head>
+<body>
+    <h1>Checklist part 2</h1>
+
+    <form>
+
+        <h3 data-phrase-id="uavinspection">UAV/UAS Inspection and checklist when powered off</h3>
+        <table style="width:100%">
+            <tr>
+                <th data-phrase-id="firmwareconsistency" >Firmware consistency</th>
+                <th>OK</th>
+                <th data-phrase-id="replaced" >Replaced</th>
+                <th data-phrase-id="date" >Date</th>
+                <th data-phrase-id="checkedby" >Checked by</th>
+            </tr>
+
+            
+           <tr>
+            <td data-phrase-id="connectioninspec">Connect the remote controller to the internet, and then launch the app. Make sure that the app and the firmware versions of the aircraft, 
+                remote controller, payloads and batteries match. Otherwise, the aircraft may not launch or risks may occur. </td>
+            <td><input type="radio" name="connectioninspecR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="connectioninspecR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="connectioninspecC" value="Yes" /></td>
+            <td><input type="date" id="connectioninspecD" /></td>
+            <td><input type="text" id="connectioninspecT" /></td>
+        </tr>
+
+        
+        <tr>
+            <td data-phrase-id="batteriesinspec">Insert all Intelligent Flight Batteries into the aircraft to make sure that 
+                all of their firmware verions are up to date. </td>
+            <td><input type="radio" name="batteriesinspecR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="batteriesinspecR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="batteriesinspecC" value="Yes" /></td>
+            <td><input type="date" id="batteriesinspecD" /></td>
+            <td><input type="text" id="batteriesinspecT" /></td>
+        </tr>
+          </table>
+        <table style="width:100%">
+            <tr>
+                <th data-phrase-id="frame" >Frame - perform a visual inspection and feel for cracks and faults with your finger</th>
+                <th>OK</th>
+                <th data-phrase-id="replaced" >Replaced</th>
+                <th data-phrase-id="date" >Date</th>
+                <th data-phrase-id="checkedby" >Checked by</th>
+            </tr>
+            <tr>
+                <td data-phrase-id="propellers">Propellers </td>
+                <td><input type="radio" name="propellersR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="propellersR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="propellersC" value="Yes" /></td>
+                <td><input type="date" id="propellersD" /></td>
+                <td><input type="text" id="propellersT" /></td>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="framearms">Frame arms</td>
+                <td><input type="radio" name="framearmsR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="framearmsR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="framearmsC" value="Yes" /></td>
+                <td><input type="date" id="framearmsD" /></td>
+                <td><input type="text" id="framearmsT" /></td>
+            </tr>
+            
+            <tr>
+                <td data-phrase-id="armjunctions">Arm junctions </td>
+                <td><input type="radio" name="armjunctionsR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="armjunctionsR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="armjunctionsC" value="Yes" /></td>
+                <td><input type="date" id="armjunctionsD" /></td>
+                <td><input type="text" id="armjunctionsT" /></td>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="landinggears">Landing gears </td>
+                <td><input type="radio" name="landinggearsR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="landinggearsR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="landinggearsC" value="Yes" /></td>
+                <td><input type="date" id="landinggearsD" /></td>
+                <td><input type="text" id="landinggearsT" /></td>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="screws">Screws (armjunctions/battery lock) </td>
+                <td><input type="radio" name="screwsR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="screwsR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="screwsC" value="Yes" /></td>
+                <td><input type="date" id="screwsD" /></td>
+                <td><input type="text" id="screwsT" /></td>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="rubberport">Waterproof rubber port covers should be in place.</td>
+                <td><input type="radio" name="rubberportR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="rubberportR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="rubberportC" value="Yes" /></td>
+                <td><input type="date" id="rubberportD" /></td>
+                <td><input type="text" id="rubberportT" /></td>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="intakevent">Intake vent (upper cooling fan). Make sure there is no blockage!</td>
+                <td><input type="radio" name="intakeventR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="intakeventR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="intakeventC" value="Yes" /></td>
+                <td><input type="date" id="intakeventD" /></td>
+                <td><input type="text" id="intakeventT" /></td>
+            </tr>
+          </table>
+
+        <table style="width:100%">
+            <tr>
+                <th data-phrase-id="motors" >Motors</th>
+                <th>OK</th>
+                <th data-phrase-id="replaced" >Replaced</th>
+                <th data-phrase-id="date" >Date</th>
+                <th data-phrase-id="checkedby" >Checked by</th>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="rotatemotors">Rotate the motors manually to check if they are firmly installed!</td>
+                <td><input type="radio" name="rotatemotorsR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="rotatemotorsR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="rotatemotorsC" value="Yes" /></td>
+                <td><input type="date" id="rotatemotorsD" /></td>
+                <td><input type="text" id="rotatemotorsT" /></td>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="listenfornoice">Listen for noise.</td>
+                <td><input type="radio" name="listenfornoiceR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="listenfornoiceR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="listenfornoiceC" value="Yes" /></td>
+                <td><input type="date" id="listenfornoiceD" /></td>
+                <td><input type="text" id="listenfornoiceT" /></td>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="nogap">No gap between motors and base.</td>
+                <td><input type="radio" name="nogapR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="nogapR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="nogapC" value="Yes" /></td>
+                <td><input type="date" id="nogapD" /></td>
+                <td><input type="text" id="nogapT" /></td>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="mountedpropellers">Mounted propellers are mounted correctly.</td>
+                <td><input type="radio" name="mountedpropellersR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="mountedpropellersR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="mountedpropellersC" value="Yes" /></td>
+                <td><input type="date" id="mountedpropellersD" /></td>
+                <td><input type="text" id="mountedpropellersT" /></td>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="ccwpropellers">CCW propellers should be on motor 1 and 3.</td>
+                <td><input type="radio" name="ccwpropellersR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="ccwpropellersR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="ccwpropellersC" value="Yes" /></td>
+                <td><input type="date" id="ccwpropellersD" /></td>
+                <td><input type="text" id="ccwpropellersT" /></td>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="cwpropellers">CW propellers should be on motor 2 and 4.</td>
+                <td><input type="radio" name="cwpropellersR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="cwpropellersR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="cwpropellersC" value="Yes" /></td>
+                <td><input type="date" id="cwpropellersD" /></td>
+                <td><input type="text" id="cwpropellersT" /></td>
+            </tr>
+        </table>
+
+        <table style="width:100%">
+            <tr>
+                <th data-phrase-id="batteries">Batteries</th>
+                <th>OK</th>
+                <th data-phrase-id="replaced" >Replaced</th>
+                <th data-phrase-id="date" >Date</th>
+                <th data-phrase-id="checkedby" >Checked by</th>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="batteryport">No foreign object in the battery port.</td>
+                <td><input type="radio" name="batteryportR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="batteryportR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="batteryportC" value="Yes" /></td>
+                <td><input type="date" id="batteryportD" /></td>
+                <td><input type="text" id="batteryportT" /></td>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="misshapenport">The port is not misshapen.</td>
+                <td><input type="radio" name="misshapenportR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="misshapenportR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="misshapenportC" value="Yes" /></td>
+                <td><input type="date" id="misshapenportD" /></td>
+                <td><input type="text" id="misshapenportT" /></td>
+            </tr>
+            <tr>
+                <td data-phrase-id="batterylocker">Battery locker is secure and will not come loose.</td>
+                <td><input type="radio" name="batterylockerR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="batterylockerR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="batterylockerC" value="Yes" /></td>
+                <td><input type="date" id="batterylockerD" /></td>
+                <td><input type="text" id="batterylockerT" /></td>
+            </tr>
+
+            <tr>
+                <td data-phrase-id="batterydamage">No visible damage on battery.</td>
+                <td><input type="radio" name="batterydamageR" value="Yes"/>
+                    <label data-phrase-id="yes">Yes</label>
+                    <input type="radio" name="batterydamageR" value="No"/>
+                    <label data-phrase-id="no">No</label>
+                </td>
+                <td><input type="checkbox" id="batterydamageC" value="Yes" /></td>
+                <td><input type="date" id="batterydamageD" /></td>
+                <td><input type="text" id="batterydamageT" /></td>
+            </tr>
+        </table>
+
+        <table style="width:100%">
+            <tr>
+                <th data-phrase-id="antennas">Antennas</th>
+                <th>OK</th>
+                <th data-phrase-id="replaced" >Replaced</th>
+                <th data-phrase-id="date" >Date</th>
+                <th data-phrase-id="checkedby" >Checked by</th>
+            </tr>
+            
+           <tr>
+            <td data-phrase-id="allantennas">All the antennas on the aircraft and remote controller are tightened firmly and free of damage.</td>
+            <td><input type="radio" name="allantennasR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="allantennasR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="allantennasC" value="Yes" /></td>
+            <td><input type="date" id="allantennasD" /></td>
+            <td><input type="text" id="allantennasT" /></td>
+        </tr>
+        
+        <tr>
+            <td data-phrase-id="antennasdonttouch">Antennas are free of contact with the rotating propellers.</td>
+            <td><input type="radio" name="antennasdonttouchR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="antennasdonttouchR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="antennasdonttouchC" value="Yes" /></td>
+            <td><input type="date" id="antennasdonttouchD" /></td>
+            <td><input type="text" id="antennasdonttouchT" /></td>
+        </tr>
+    </table>
+
+    <table style="width:100%">
+        <tr>
+            <th data-phrase-id="sensingvision">Infrared sensing and Vision Systems</th>
+            <th>OK</th>
+            <th data-phrase-id="replaced" >Replaced</th>
+            <th data-phrase-id="date" >Date</th>
+            <th data-phrase-id="checkedby" >Checked by</th>
+        </tr>
+
+        <tr>
+            <td data-phrase-id="checklenses">Check the lenses or glass of the IS and VS and lights.</td>
+            <td><input type="radio" name="checklensesR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="checklensesR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="checklensesC" value="Yes" /></td>
+            <td><input type="date" id="checklensesD" /></td>
+            <td><input type="text" id="checklensesT" /></td>
+        </tr>
+
+        <tr>
+            <td data-phrase-id="infraredsensing">Infrared Sensing</td>
+            <td><input type="radio" name="infraredsensingR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="infraredsensingR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="infraredsensingC" value="Yes" /></td>
+            <td><input type="date" id="infraredsensingD" /></td>
+            <td><input type="text" id="infraredsensingT" /></td>
+        </tr>
+
+        <tr>
+            <td data-phrase-id="visionsystem">Vision System</td>
+            <td><input type="radio" name="visionsystemR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="visionsystemR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="visionsystemC" value="Yes" /></td>
+            <td><input type="date" id="visionsystemD" /></td>
+            <td><input type="text" id="visionsystemT" /></td>
+        </tr>
+
+        <tr>
+            <td data-phrase-id="lights">Lights</td>
+            <td><input type="radio" name="lightsR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="lightsR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="lightsC" value="Yes" /></td>
+            <td><input type="date" id="lightsD" /></td>
+            <td><input type="text" id="lightsT" /></td>
+        </tr>
+    </table>
+       
+        <h4 data-phrase-id="contactsupport" style="color:red;">Contact DJI Support if the lenses of the Sensing and Vision system are damaged. If you are replacing anything: 1. A test flight in the simulator is mandatory. 2. Follow the checklist when powering on!					
+        </h4>
+
+        <br />
+
+
+    <table style="width:100%">
+        <tr>
+            <th data-phrase-id="camera">Gimbal (camera)</th>
+            <th>OK</th>
+            <th data-phrase-id="replaced" >Replaced</th>
+            <th data-phrase-id="date" >Date</th>
+            <th data-phrase-id="checkedby" >Checked by</th>
+        </tr>
+
+        <tr>
+            <td data-phrase-id="rotatesmoothly">The gimbal appears intact and can rotate smoothly in all the three axes.</td>
+            <td><input type="radio" name="rotatesmoothlyR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="rotatesmoothlyR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="rotatesmoothlyC" value="Yes" /></td>
+            <td><input type="date" id="rotatesmoothlyD" /></td>
+            <td><input type="text" id="rotatesmoothlyT" /></td>
+        </tr>
+
+        <tr>
+            <td data-phrase-id="cleanlens">The lens in clean.</td>
+            <td><input type="radio" name="cleanlensR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="cleanlensR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="cleanlensC" value="Yes" /></td>
+            <td><input type="date" id="cleanlensD" /></td>
+            <td><input type="text" id="cleanlensT" /></td>
+        </tr>
+
+        <tr>
+            <td data-phrase-id="dampeners">Dampeners have no crack or split.</td>
+            <td><input type="radio" name="dampenersR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="dampenersR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="dampenersC" value="Yes" /></td>
+            <td><input type="date" id="dampenersD" /></td>
+            <td><input type="text" id="dampenersT" /></td>
+        </tr>
+
+        <tr>
+            <td data-phrase-id="antidroprope">Anti-drop rope is not damaged and secure.</td>
+            <td><input type="radio" name="antidropropeR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="antidropropeR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="antidropropeC" value="Yes" /></td>
+            <td><input type="date" id="antidropropeD" /></td>
+            <td><input type="text" id="antidropropeT" /></td>
+        </tr>
+
+        <tr>
+            <td data-phrase-id="connector">Gimbal connector is secure.</td>
+            <td><input type="radio" name="connectorR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="connectorR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="connectorC" value="Yes" /></td>
+            <td><input type="date" id="connectorD" /></td>
+            <td><input type="text" id="connectorT" /></td>
+        </tr>
+    </table>
+
+    <table style="width:100%">
+        <tr>
+            <th data-phrase-id="remotecontroller">Remote Controller</th>
+            <th>OK</th>
+            <th data-phrase-id="replaced" >Replaced</th>
+            <th data-phrase-id="date" >Date</th>
+            <th data-phrase-id="checkedby" >Checked by</th>
+        </tr>
+        
+        <tr>
+            <td data-phrase-id="controlsticks">Control sticks are centered in neutral position.</td>
+            <td><input type="radio" name="controlsticksR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="controlsticksR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="controlsticksC" value="Yes" /></td>
+            <td><input type="date" id="controlsticksD" /></td>
+            <td><input type="text" id="controlsticksT" /></td>
+        </tr>
+        
+        <tr>
+            <td data-phrase-id="noforeignobject">No foreign object (E.g., sand or soil)</td>
+            <td><input type="radio" name="noforeignobjectR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="noforeignobjectR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="noforeignobjectC" value="Yes" /></td>
+            <td><input type="date" id="noforeignobjectD" /></td>
+            <td><input type="text" id="noforeignobjectT" /></td>
+        </tr>
+        
+        <tr>
+            <td data-phrase-id="fullrange">Full ranges of motion in all channels.</td>
+            <td><input type="radio" name="fullrangeR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="fullrangeR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="fullrangeC" value="Yes" /></td>
+            <td><input type="date" id="fullrangeD" /></td>
+            <td><input type="text" id="fullrangeT" /></td>
+        </tr>
+        
+        <tr>
+            <td data-phrase-id="screen">Screen on the remote controller is clean and dry.</td>
+            <td><input type="radio" name="screenR" value="Yes"/>
+                <label data-phrase-id="yes">Yes</label>
+                <input type="radio" name="screenR" value="No"/>
+                <label data-phrase-id="no">No</label>
+            </td>
+            <td><input type="checkbox" id="screenC" value="Yes" /></td>
+            <td><input type="date" id="screenD" /></td>
+            <td><input type="text" id="screenT" /></td>
+        </tr>
+    </table>
+
+
+ 
+    <h2 data-phrase-id="flightarea">Flight Area</h2>
+        
+    <label for="danger" data-phrase-id="danger">Dangers and obstacles</label> 
+    <textarea id="danger" rows="10" cols="50" maxlength="500" style="resize: none ;"></textarea>
+    <br />
+        <label for="landowners" data-phrase-id="landowners">Landowners and neighbours </label>
+        <input type="text" id="landowners" />
+        <br />
+        <label for="bufferzone" data-phrase-id="bufferzone">Buffer zone</label>
+        <input type="text" id="bufferzone" />
+        <br />
+        <label for="visitors" data-phrase-id="visitors">Visitors</label>
+        <input type="number" id="visitors" />      
+        <br />    <br />
+
+        <h2 data-phrase-id="checklistpoweron">Checklist when powered on! Technical precheck</h2>
+        <h4 data-phrase-id="remotecontroller">Remote controller</h4>
+        
+        <select id="controlstickon">
+            <option selected value="">-- Confirm the control stick mode --</option>
+            <option value="1">Mode 1</option>
+            <option value="2">Mode 2</option>
+            <option value="3">Mode 3</option>
+        </select> <br />
+
+        <input type="checkbox" id="controlstickcalib" value="Yes" />
+        <label for="fname" data-phrase-id="controlstickcalib">Check in the control stick calibration page.</label><br />
+
+        <input type="checkbox" id="controlleverprop" value="Yes" />
+        <label for="fname" data-phrase-id="controlleverprop">Proportion of control lever is correct.</label><br />
+
+        <input type="checkbox" id="remotepoweron" value="Yes" />
+        <label for="fname" data-phrase-id="remotepoweron">Remote controller has sufficient power.</label><br />
+
+        <input type="checkbox" id="batteryinstallon" value="Yes" />
+        <label for="fname" data-phrase-id="batteryinstallon">Battery is firmly installed.</label><br />
+
+        <input type="checkbox" id="channelon" value="Yes" />
+        <label for="fname" data-phrase-id="channelon">Confirm that the channel used is automatic or custom.</label><br />
+
+        <input type="checkbox" id="opfreqon" value="Yes" />
+        <label for="fname" data-phrase-id="opfreqon">Choose the operation frequency and channel according to the signal to noise ration.</label><br />
+      
+        <br />
+        <h4 data-phrase-id="batteryon">Battery</h4>
+
+        <input type="checkbox" id="batteryintellichargedon" value="Yes" />
+        <label for="fname" data-phrase-id="batteryintellichargedon">All batteries, including Intelligent Flight Batteries and remote controller batteries, are fully charged.</label><br />
+
+        <input type="checkbox" id="batteryintelliinstallon" value="Yes" />
+        <label for="fname" data-phrase-id="batteryintelliinstallon">The intelligent Fight Batteries are firmly installed.</label><br />
+
+        <input type="checkbox" id="batteryintellicellon" value="Yes" />
+        <label for="fname" data-phrase-id="batteryintellicellon">Check the battery level and voltage of each battery cell in the battery page in the app to make sure they are normal.</label><br />
+       
+        <br />
+        <h4 data-phrase-id="flightparaconfig">Flight Parameter Configuration</h4>
+
+          <!-- if RTH setting set to anything other than RTH fields will disappear  -->
+        <select id="rthsetting">
+            <option selected value="">-- RTH setting --</option>
+            <option value="rth">Return to Home</option>
+            <option value="hover">Hover</option>
+            <option value="land">Land</option>
+        </select> <br />
+        
+        <div style='display:none;' id='rthboxes'>
+        <label for="rthaltitude" data-phrase-id="rthaltitude">RTH altitude</label>
+        <input type="text" id="rthaltitude" /><br/>
+        
+        <label for="heightlimits" data-phrase-id="heightlimits">RTH height limit</label>
+        <input type="text" id="heightlimits" /><br/>
+        
+        <label for="distancelimits" data-phrase-id="distancelimits">RTH distance limit</label>
+        <input type="text" id="distancelimits" /><br/>
+        </div>
+
+        <input type="checkbox" id="failsafeaction" value="Yes" />
+        <label for="fname" data-phrase-id="failsafeaction">"Failsafe"-action of the aircraft is what fits your mission.</label><br />
+
+        <input type="checkbox" id="obstaclesensing" value="Yes" />
+        <label for="fname" data-phrase-id="obstaclesensing">Obstacle sensing function are setup correctly.</label><br />
+
+        <input type="checkbox" id="moduleautocheck" value="Yes" />
+        <label for="fname" data-phrase-id="moduleautocheck">View the module auto-check information for errors.</label><br />
+
+        <input type="checkbox" id="tensatellites" value="Yes" />
+        <label for="fname" data-phrase-id="tensatellites">GNSS Positioning - There are at least 10 satellites and the aircraft works in P-mode. </label><br />
+
+        <input type="checkbox" id="rtkenable" value="Yes" />
+        <label for="fname" data-phrase-id="rtkenable">Enable RTK function.</label><br />
+
+        <input type="checkbox" id="basestation" value="Yes" />
+        <label for="fname" data-phrase-id="basestation">Select the correct base station and channel.</label><br />
+
+        <input type="checkbox" id="rtkpositioning" value="Yes" />
+        <label for="fname" data-phrase-id="rtkpositioning">Make sure that RTK positioning is in use.</label><br />
+
+        <input type="checkbox" id="rtkheading" value="Yes" />
+        <label for="fname" data-phrase-id="rtkheading">Check the RTK page if the heading and positioning are fixed.</label><br />
+       
+
+        <br />
+        <h4 data-phrase-id="sensors">Sensors</h4>
+       
+        <input type="checkbox" id="imudata" value="Yes" />
+        <label for="fname" data-phrase-id="imudata">Data on each IMU is shown in the app.</label><br />
+        
+        <input type="checkbox" id="imuperform" value="Yes" />
+        <label for="fname" data-phrase-id="imuperform">IMU can be performed successfully.</label><br />
+        
+        <input type="checkbox" id="compassheading" value="Yes" />
+        <label for="fname" data-phrase-id="compassheading">The heading of the compass matches the physical one.</label><br />
+        
+        <input type="checkbox" id="compassneedle" value="Yes" />
+        <label for="fname" data-phrase-id="compassneedle">Compass needle is stable.</label><br />
+        
+        <input type="checkbox" id="compasscalibration" value="Yes" />
+        <label for="fname" data-phrase-id="compasscalibration">Compass calibration can be performed successfully.</label><br />
+        
+        <input type="checkbox" id="visionsys" value="Yes" />
+        <label for="fname" data-phrase-id="visionsys">Vision System in all directions are enabled with no error prompt.</label><br />
+        
+        <br />
+        <h4 data-phrase-id="topbotfans">Top and bottom cooling fans</h4>
+
+        <input type="checkbox" id="coolingfans" value="Yes" />
+        <label for="fname" data-phrase-id="coolingfans">Check by careful touching or listening that the fans are operating normally and without abnormal noise.</label><br />
+
+
+        <br />
+        <h4 data-phrase-id="motorspin">Motor spin</h4>
+
+        <input type="checkbox" id="bindcontrolleraircraft" value="Yes" />
+        <label for="fname" data-phrase-id="bindcontrolleraircraft">Bind the remote controller and aircraft.</label><br />
+        
+        <input type="checkbox" id="fpvcameramotor" value="Yes" />
+        <label for="fname" data-phrase-id="fpvcameramotor">Make sure the FPV camera display in the app works normally.</label><br />
+        
+        <input type="checkbox" id="cscon" value="Yes" />
+        <label for="fname" data-phrase-id="cscon">Perform a CSC - Combination Stick Command - to start the motors. NOTE: Stay away from the spinning motors and propellers to avoid injuries during the test.</label><br />
+        
+        <input type="checkbox" id="motornoise" value="Yes" />
+        <label for="fname" data-phrase-id="motornoise">Motors start without noise.</label><br />
+        
+        <input type="checkbox" id="noerror" value="Yes" />
+        <label for="fname" data-phrase-id="noerror">No error prompt in the app.</label><br />
+        
+
+        <input type="checkbox" id="motorsrotate" value="Yes" />
+        <label for="fname" data-phrase-id="motorsrotate">OBSERVE the motors to ensure that motors 1 and 3 rotate counterclockwise and motors 2 and 4 rotate clockwise. Perform this check either when starting or stopping the motors.</label><br />
+        
+
+    </form>
+    <br />
+<button type="submit" class="btn btn-primary" onclick="saveFile()" data-phrase-id="savepdf">Save to pdf</button><br /><br />
+
+<a href="/check1.html">Part 1</a><br />
+<a href="/check2.html">Part 2</a><br />
+<a href="/check3.html">Part 3</a><br />
+
+<script>
+
+//if RTH setting set to anything other than RTH fields will disappear
+$(document).ready(function(){
+    $('#rthsetting').on('change', function() {
+      if ( this.value == 'rth')
+      
+      {
+      $("#rthboxes").show();
+      }
+       else  
+      {
+        $("#rthboxes").hide();
+      }
+    });
+});
+
+// Check the clicked radio button in a group, and return the value. If no button was clicked an empty value is returned.
+function getCheckedValue(el) {
+  for (var i = 0, length = el.length; i < length; i++) {
+    if (el[i].checked) {
+      return el[i].value;
+      break;
+    }
+  }
+  return '';
+}
+
+// Checking if the checbox is clicked or not. Returning the value of the checkbox if it is checked.
+function checkcheckbox(element){
+        if(element.checked){
+            return element.value;
+        }
+        else return '';
+    }
+
+ //  Save the info the users have entered into a pdf-file
+function saveFile(){
+    // Get the data from each element in the form.
+    var readytosave = true;     
+
+    //firmware
+    const connectioninspecR = getCheckedValue(document.getElementsByName('connectioninspecR'));
+    const connectioninspecC = checkcheckbox(document.getElementById('connectioninspecC'));
+    const connectioninspecD = document.getElementById('connectioninspecD');
+    const connectioninspecT = document.getElementById('connectioninspecT');
+
+    const batteriesinspecR = getCheckedValue(document.getElementsByName('batteriesinspecR'));
+    const batteriesinspecC = checkcheckbox(document.getElementById('batteriesinspecC'));
+    const batteriesinspecD = document.getElementById('batteriesinspecD');
+    const batteriesinspecT = document.getElementById('batteriesinspecT');
+
+    //frame
+    const propellersR = getCheckedValue(document.getElementsByName('propellersR'));
+    const propellersC = checkcheckbox(document.getElementById('propellersC'));
+    const propellersD = document.getElementById('propellersD');
+    const propellersT = document.getElementById('propellersT');
+
+    const framearmsR = getCheckedValue(document.getElementsByName('framearmsR'));
+    const framearmsC = checkcheckbox(document.getElementById('framearmsC'));
+    const framearmsD = document.getElementById('framearmsD');
+    const framearmsT = document.getElementById('framearmsT');
+
+    const armjunctionsR = getCheckedValue(document.getElementsByName('armjunctionsR'));
+    const armjunctionsC = checkcheckbox(document.getElementById('armjunctionsC'));
+    const armjunctionsD = document.getElementById('armjunctionsD');
+    const armjunctionsT = document.getElementById('armjunctionsT');
+
+    const landinggearsR = getCheckedValue(document.getElementsByName('landinggearsR'));
+    const landinggearsC = checkcheckbox(document.getElementById('landinggearsC'));
+    const landinggearsD = document.getElementById('landinggearsD');
+    const landinggearsT = document.getElementById('landinggearsT');
+
+    const screwsR = getCheckedValue(document.getElementsByName('screwsR'));
+    const screwsC = checkcheckbox(document.getElementById('screwsC'));
+    const screwsD = document.getElementById('screwsD');
+    const screwsT = document.getElementById('screwsT');
+
+    const rubberportR = getCheckedValue(document.getElementsByName('rubberportR'));
+    const rubberportC = checkcheckbox(document.getElementById('rubberportC'));
+    const rubberportD = document.getElementById('rubberportD');
+    const rubberportT = document.getElementById('rubberportT');
+
+    const intakeventR = getCheckedValue(document.getElementsByName('intakeventR'));
+    const intakeventC = checkcheckbox(document.getElementById('intakeventC'));
+    const intakeventD = document.getElementById('intakeventD');
+    const intakeventT = document.getElementById('intakeventT');
+
+    //motors
+
+    const rotatemotorsR = getCheckedValue(document.getElementsByName('rotatemotorsR'));
+    const rotatemotorsC = checkcheckbox(document.getElementById('rotatemotorsC'));
+    const rotatemotorsD = document.getElementById('rotatemotorsD');
+    const rotatemotorsT = document.getElementById('rotatemotorsT');
+
+    const listenfornoiceR = getCheckedValue(document.getElementsByName('listenfornoiceR'));
+    const listenfornoiceC = checkcheckbox(document.getElementById('listenfornoiceC'));
+    const listenfornoiceD = document.getElementById('listenfornoiceD');
+    const listenfornoiceT = document.getElementById('listenfornoiceT');
+
+    const nogapR = getCheckedValue(document.getElementsByName('nogapR'));
+    const nogapC = checkcheckbox(document.getElementById('nogapC'));
+    const nogapD = document.getElementById('nogapD');
+    const nogapT = document.getElementById('nogapT');
+
+    const mountedpropellersR = getCheckedValue(document.getElementsByName('mountedpropellersR'));
+    const mountedpropellersC = checkcheckbox(document.getElementById('mountedpropellersC'));
+    const mountedpropellersD = document.getElementById('mountedpropellersD');
+    const mountedpropellersT = document.getElementById('mountedpropellersT');
+
+    const ccwpropellersR = getCheckedValue(document.getElementsByName('ccwpropellersR'));
+    const ccwpropellersC = checkcheckbox(document.getElementById('ccwpropellersC'));
+    const ccwpropellersD = document.getElementById('ccwpropellersD');
+    const ccwpropellersT = document.getElementById('ccwpropellersT');
+
+    const cwpropellersR = getCheckedValue(document.getElementsByName('cwpropellersR'));
+    const cwpropellersC = checkcheckbox(document.getElementById('cwpropellersC'));
+    const cwpropellersD = document.getElementById('cwpropellersD');
+    const cwpropellersT = document.getElementById('cwpropellersT');
+
+    //batteries
+
+    const batteryportR = getCheckedValue(document.getElementsByName('batteryportR'));
+    const batteryportC = checkcheckbox(document.getElementById('batteryportC'));
+    const batteryportD = document.getElementById('batteryportD');
+    const batteryportT = document.getElementById('batteryportT');
+
+    const misshapenportR = getCheckedValue(document.getElementsByName('misshapenportR'));
+    const misshapenportC = checkcheckbox(document.getElementById('misshapenportC'));
+    const misshapenportD = document.getElementById('misshapenportD');
+    const misshapenportT = document.getElementById('misshapenportT');
+
+    const batterylockerR = getCheckedValue(document.getElementsByName('batterylockerR'));
+    const batterylockerC = checkcheckbox(document.getElementById('batterylockerC'));
+    const batterylockerD = document.getElementById('batterylockerD');
+    const batterylockerT = document.getElementById('batterylockerT');
+
+    const batterydamageR = getCheckedValue(document.getElementsByName('batterydamageR'));
+    const batterydamageC = checkcheckbox(document.getElementById('batterydamageC'));
+    const batterydamageD = document.getElementById('batterydamageD');
+    const batterydamageT = document.getElementById('batterydamageT');
+
+    //antennas
+
+    const allantennasR = getCheckedValue(document.getElementsByName('allantennasR'));
+    const allantennasC = checkcheckbox(document.getElementById('allantennasC'));
+    const allantennasD = document.getElementById('allantennasD');
+    const allantennasT = document.getElementById('allantennasT');
+
+    const antennasdonttouchR = getCheckedValue(document.getElementsByName('antennasdonttouchR'));
+    const antennasdonttouchC = checkcheckbox(document.getElementById('antennasdonttouchC'));
+    const antennasdonttouchD = document.getElementById('antennasdonttouchD');
+    const antennasdonttouchT = document.getElementById('antennasdonttouchT');
+
+    //infrared sensing
+
+    
+    const checklensesR = getCheckedValue(document.getElementsByName('checklensesR'));
+    const checklensesC = checkcheckbox(document.getElementById('checklensesC'));
+    const checklensesD = document.getElementById('checklensesD');
+    const checklensesT = document.getElementById('checklensesT');
+
+    const infraredsensingR = getCheckedValue(document.getElementsByName('infraredsensingR'));
+    const infraredsensingC = checkcheckbox(document.getElementById('infraredsensingC'));
+    const infraredsensingD = document.getElementById('infraredsensingD');
+    const infraredsensingT = document.getElementById('infraredsensingT');
+    
+    const visionsystemR = getCheckedValue(document.getElementsByName('visionsystemR'));
+    const visionsystemC = checkcheckbox(document.getElementById('visionsystemC'));
+    const visionsystemD = document.getElementById('visionsystemD');
+    const visionsystemT = document.getElementById('visionsystemT');
+    
+    const lightsR = getCheckedValue(document.getElementsByName('lightsR'));
+    const lightsC = checkcheckbox(document.getElementById('lightsC'));
+    const lightsD = document.getElementById('lightsD');
+    const lightsT = document.getElementById('lightsT');
+
+
+    //gimbal
+    
+    const rotatesmoothlyR = getCheckedValue(document.getElementsByName('rotatesmoothlyR'));
+    const rotatesmoothlyC = checkcheckbox(document.getElementById('rotatesmoothlyC'));
+    const rotatesmoothlyD = document.getElementById('rotatesmoothlyD');
+    const rotatesmoothlyT = document.getElementById('rotatesmoothlyT');
+
+    const cleanlensR = getCheckedValue(document.getElementsByName('cleanlensR'));
+    const cleanlensC = checkcheckbox(document.getElementById('cleanlensC'));
+    const cleanlensD = document.getElementById('cleanlensD');
+    const cleanlensT = document.getElementById('cleanlensT');
+
+    const dampenersR = getCheckedValue(document.getElementsByName('dampenersR'));
+    const dampenersC = checkcheckbox(document.getElementById('dampenersC'));
+    const dampenersD = document.getElementById('dampenersD');
+    const dampenersT = document.getElementById('dampenersT');
+
+    const antidropropeR = getCheckedValue(document.getElementsByName('antidropropeR'));
+    const antidropropeC = checkcheckbox(document.getElementById('antidropropeC'));
+    const antidropropeD = document.getElementById('antidropropeD');
+    const antidropropeT = document.getElementById('antidropropeT');
+
+    const connectorR = getCheckedValue(document.getElementsByName('connectorR'));
+    const connectorC = checkcheckbox(document.getElementById('connectorC'));
+    const connectorD = document.getElementById('connectorD');
+    const connectorT = document.getElementById('connectorT');
+
+    //remote controller
+
+    const controlsticksR = getCheckedValue(document.getElementsByName('controlsticksR'));
+    const controlsticksC = checkcheckbox(document.getElementById('controlsticksC'));
+    const controlsticksD = document.getElementById('controlsticksD');
+    const controlsticksT = document.getElementById('controlsticksT');
+
+    const noforeignobjectR = getCheckedValue(document.getElementsByName('noforeignobjectR'));
+    const noforeignobjectC = checkcheckbox(document.getElementById('noforeignobjectC'));
+    const noforeignobjectD = document.getElementById('noforeignobjectD');
+    const noforeignobjectT = document.getElementById('noforeignobjectT');
+
+    const fullrangeR = getCheckedValue(document.getElementsByName('fullrangeR'));
+    const fullrangeC = checkcheckbox(document.getElementById('fullrangeC'));
+    const fullrangeD = document.getElementById('fullrangeD');
+    const fullrangeT = document.getElementById('fullrangeT');
+
+    const screenR = getCheckedValue(document.getElementsByName('screenR'));
+    const screenC = checkcheckbox(document.getElementById('screenC'));
+    const screenD = document.getElementById('screenD');
+    const screenT = document.getElementById('screenT');
+
+
+    //flight area
+    const danger = document.getElementById('danger');
+    const landowners = document.getElementById('landowners');
+    const bufferzone = document.getElementById('bufferzone');
+    const visitors = document.getElementById('visitors');
+
+    //remote controller
+    const controlstickon = document.getElementById('controlstickon');
+    const controlstickcalib = document.getElementById('controlstickcalib');
+    const controlleverprop = document.getElementById('controlleverprop');
+    const remotepoweron = document.getElementById('remotepoweron');
+    const batteryinstallon = document.getElementById('batteryinstallon');
+    const channelon = document.getElementById('channelon');
+    const opfreqon = document.getElementById('opfreqon');
+
+    //battery
+    const batteryintellichargedon = document.getElementById('batteryintellichargedon');
+    const batteryintelliinstallon = document.getElementById('batteryintelliinstallon');
+    const batteryintellicellon = document.getElementById('batteryintellicellon');
+
+    //Flight Parameter Configuration
+    
+    const rthsetting = document.getElementById('rthsetting');
+    const failsafeaction = document.getElementById('failsafeaction');
+    const rthaltitude = document.getElementById('rthaltitude');
+    const heightlimits = document.getElementById('heightlimits');
+    const distancelimits = document.getElementById('distancelimits');
+    const obstaclesensing = document.getElementById('obstaclesensing');
+    const moduleautocheck = document.getElementById('moduleautocheck');
+    const tensatellites = document.getElementById('tensatellites');
+    const rtkenable = document.getElementById('rtkenable');
+    const basestation = document.getElementById('basestation');
+    const rtkpositioning = document.getElementById('rtkpositioning');
+    const rtkheading = document.getElementById('rtkheading');
+
+    //sensors
+    const imudata = document.getElementById('imudata');
+    const imuperform = document.getElementById('imuperform');
+    const compassheading = document.getElementById('compassheading');
+    const compassneedle = document.getElementById('compassneedle');
+    const compasscalibration = document.getElementById('compasscalibration');
+    const visionsys = document.getElementById('visionsys');
+
+    //fans
+    const coolingfans = document.getElementById('coolingfans');
+
+    //motor spin
+    const bindcontrolleraircraft = document.getElementById('bindcontrolleraircraft');
+    const fpvcameramotor = document.getElementById('fpvcameramotor');
+    const cscon = document.getElementById('cscon');
+    const motornoise = document.getElementById('motornoise');
+    const noerror = document.getElementById('noerror');
+    const motorsrotate = document.getElementById('motorsrotate');
+
+
+
+    
+
+
+
+     // Don't download the file if any fields have been left blank https://stackoverflow.com/questions/64382361/html-input-required-attribute-not-working-when-trying-to-save-form-data-in-a-tex
+    if (
+        
+       !danger.value ||
+       !landowners.value ||
+       !bufferzone.value ||
+       !visitors.value ||
+       !rthsetting.value ||
+       !controlstickon.value 
+
+
+    ){  
+        readytosave = false;
+        alert("All controls must have been done before saving."); 
+    }
+
+        // Don't download the file if any checkbox have been left unchecked
+        if (
+        connectioninspecR.checked === false ||
+        batteriesinspecR.checked === false ||
+        propellersR.checked === false ||
+        framearmsR.checked === false ||
+        armjunctionsR.checked === false ||
+        landinggearsR.checked === false ||
+        screwsR.checked === false ||
+        rubberportR.checked === false ||
+        intakeventR.checked === false ||
+        rotatemotorsR.checked === false ||
+        listenfornoiceR.checked === false ||
+        nogapR.checked === false ||
+        mountedpropellersR.checked === false ||
+        ccwpropellersR.checked === false ||
+        cwpropellersR.checked === false ||
+        batteryportR.checked === false ||
+        misshapenportR.checked === false ||
+        batterylockerR.checked === false ||
+        batterydamageR.checked === false ||
+        allantennasR.checked === false ||
+        antennasdonttouchR.checked === false ||
+        checklensesR.checked === false ||
+        infraredsensingR.checked === false ||
+        visionsystemR.checked === false ||
+        lightsR.checked === false ||
+        rotatesmoothlyR.checked === false ||
+        cleanlensR.checked === false ||
+        dampenersR.checked === false ||
+        antidropropeR.checked === false ||
+        connectorR.checked === false ||
+        controlsticksR.checked === false ||
+        noforeignobjectR.checked === false ||
+        fullrangeR.checked === false ||
+        screenR.checked === false ||
+
+        controlstickcalib.checked === false ||
+        controlleverprop.checked === false ||
+        remotepoweron.checked === false ||
+        batteryinstallon.checked === false ||
+        channelon.checked === false ||
+        opfreqon.checked === false ||
+        batteryintellichargedon.checked === false ||
+        batteryintelliinstallon.checked === false ||
+        batteryintellicellon.checked === false ||
+        failsafeaction.checked === false ||
+        
+        obstaclesensing.checked === false ||
+       
+        moduleautocheck.checked === false ||
+        tensatellites.checked === false ||
+        rtkenable.checked === false ||
+        basestation.checked === false ||
+        rtkpositioning.checked === false ||
+        rtkheading.checked === false ||
+        imudata.checked === false ||
+        imuperform.checked === false ||
+        compassheading.checked === false ||
+        compassneedle.checked === false ||
+        compasscalibration.checked === false ||
+        visionsys.checked === false ||
+        coolingfans.checked === false ||
+        bindcontrolleraircraft.checked === false ||
+        fpvcameramotor.checked === false ||
+        cscon.checked === false ||
+        motornoise.checked === false ||
+        noerror.checked === false ||
+        motorsrotate.checked === false
+       
+
+    ){
+        readytosave = false;
+        alert("All checks must have been done before saving.");
+    }
+
+    if (readytosave === false) { return }
+       
+    // This variable stores all the data.
+    let data = 
+        '<h1>Checklist part 2</h1>' +
+        '<h2>UAV/UAS Inspection and checklist when powered off</h2><br /> ' +
+        '<h2>Firmware consistency</h2><br /> ' +
+        
+        '<br />Connect the remote controller to the internet, and then launch the app. Make sure that the app and the firmware versions of the aircraft, remote controller, payloads and batteries match: ' + connectioninspecR + '<br /> ' +
+        'Replaced: ' + connectioninspecC + ' <br /> ' +
+        'Date: ' + connectioninspecD.value + ' <br /> ' +
+        'Checked by : ' + connectioninspecT.value + ' <br /> ' +
+
+        '<br /> Insert all Intelligent Flight Batteries into the aircraft to make sure that all of their firmware verions are up to date. ' + batteriesinspecR + '<br /> ' +
+        'Replaced: ' + batteriesinspecC + ' <br /> ' +
+        'Date: ' + batteriesinspecD.value + ' <br /> ' +
+        'Checked by : ' + batteriesinspecT.value + ' <br /> ' +
+
+        '<h2>Frame</h2><br /> ' +
+        
+        '<br />Propellers ' + propellersR + '<br /> ' +
+        'Replaced: ' + propellersC + ' <br /> ' +
+        'Date: ' + propellersD.value + ' <br /> ' +
+        'Checked by : ' + propellersT.value + ' <br /> ' +
+
+        '<br />Frame arms ' + framearmsR + '<br /> ' +
+        'Replaced: ' + framearmsC + ' <br /> ' +
+        'Date: ' + framearmsD.value + ' <br /> ' +
+        'Checked by : ' + framearmsT.value + ' <br /> ' +
+        
+        '<br />Arm junctions ' + armjunctionsR + '<br /> ' +
+        'Replaced: ' + armjunctionsC + ' <br /> ' +
+        'Date: ' + armjunctionsD.value + ' <br /> ' +
+        'Checked by : ' + armjunctionsT.value + ' <br /> ' +
+
+        '<br />Landing gears ' + landinggearsR + '<br /> ' +
+        'Replaced: ' + landinggearsC + ' <br /> ' +
+        'Date: ' + landinggearsD.value + ' <br /> ' +
+        'Checked by : ' + landinggearsT.value + ' <br /> ' +
+
+        '<br />Screws (armjunctions/battery lock) ' + screwsR + '<br /> ' +
+        'Replaced: ' + screwsC + ' <br /> ' +
+        'Date: ' + screwsD.value + ' <br /> ' +
+        'Checked by : ' + screwsT.value + ' <br /> ' +
+  
+        '<br />Waterproof rubber port covers should be in place. ' + rubberportR + '<br /> ' +
+        'Replaced: ' + rubberportC + ' <br /> ' +
+        'Date: ' + rubberportD.value + ' <br /> ' +
+        'Checked by : ' + rubberportT.value + ' <br /> ' +
+        
+        '<br />Intake vent (upper cooling fan) ' + intakeventR + '<br /> ' +
+        'Replaced: ' + intakeventC + ' <br /> ' +
+        'Date: ' + intakeventD.value + ' <br /> ' +
+        'Checked by : ' + intakeventT.value + ' <br /> ' +
+
+
+        '<h2>Motors</h2><br /> ' +
+
+        '<br />Rotate the motors manually to check if they are firmly installed! ' + rotatemotorsR + '<br /> ' +
+        'Replaced: ' + rotatemotorsC + ' <br /> ' +
+        'Date: ' + rotatemotorsD.value + ' <br /> ' +
+        'Checked by : ' + rotatemotorsT.value + ' <br /> ' +
+
+        '<br />Listen for noise. ' + listenfornoiceR + '<br /> ' +
+        'Replaced: ' + listenfornoiceC + ' <br /> ' +
+        'Date: ' + listenfornoiceD.value + ' <br /> ' +
+        'Checked by : ' + listenfornoiceT.value + ' <br /> ' +
+
+        '<br />No gap between motors and base. ' + nogapR + '<br /> ' +
+        'Replaced: ' + nogapC + ' <br /> ' +
+        'Date: ' + nogapD.value + ' <br /> ' +
+        'Checked by : ' + nogapT.value + ' <br /> ' +
+
+        '<br />Mounted propellers are mounted correctly. ' + mountedpropellersR + '<br /> ' +
+        'Replaced: ' + mountedpropellersC + ' <br /> ' +
+        'Date: ' + mountedpropellersD.value + ' <br /> ' +
+        'Checked by : ' + mountedpropellersT.value + ' <br /> ' +
+
+        '<br />CCW propellers should be on motor 1 and 3. ' + ccwpropellersR + '<br /> ' +
+        'Replaced: ' + ccwpropellersC + ' <br /> ' +
+        'Date: ' + ccwpropellersD.value + ' <br /> ' +
+        'Checked by : ' + ccwpropellersT.value + ' <br /> ' +
+
+        '<br />CW propellers should be on motor 2 and 4. ' + cwpropellersR + '<br /> ' +
+        'Replaced: ' + cwpropellersC + ' <br /> ' +
+        'Date: ' + cwpropellersD.value + ' <br /> ' +
+        'Checked by : ' + cwpropellersT.value + ' <br /> ' +
+
+
+        '<h2>Batteries</h2><br /> ' +
+
+        '<br />No foreign object in the battery port. ' + batteryportR + '<br /> ' +
+        'Replaced: ' + batteryportC + ' <br /> ' +
+        'Date: ' + batteryportD.value + ' <br /> ' +
+        'Checked by : ' + batteryportT.value + ' <br /> ' +
+
+        '<br />The port is not misshapen. ' + misshapenportR + '<br /> ' +
+        'Replaced: ' + misshapenportC + ' <br /> ' +
+        'Date: ' + misshapenportD.value + ' <br /> ' +
+        'Checked by : ' + misshapenportT.value + ' <br /> ' +
+
+        '<br />Battery locker is secure and will not come loose. ' + batterylockerR + '<br /> ' +
+        'Replaced: ' + batterylockerC + ' <br /> ' +
+        'Date: ' + batterylockerD.value + ' <br /> ' +
+        'Checked by : ' + batterylockerT.value + ' <br /> ' +
+
+        '<br />No visible damage on battery. ' + batterydamageR + '<br /> ' +
+        'Replaced: ' + batterydamageC + ' <br /> ' +
+        'Date: ' + batterydamageD.value + ' <br /> ' +
+        'Checked by : ' + batterydamageT.value + ' <br /> ' +
+
+
+        '<h2>Antennas</h2><br /> ' +
+
+        '<br />All the antennas on the aircraft and remote controller are tightened firmly and free of damage. ' + allantennasR + '<br /> ' +
+        'Replaced: ' + allantennasC + ' <br /> ' +
+        'Date: ' + allantennasD.value + ' <br /> ' +
+        'Checked by : ' + allantennasT.value + ' <br /> ' +
+
+        '<br />Antennas are free of contact with the rotating propellers. ' + antennasdonttouchR + '<br /> ' +
+        'Replaced: ' + antennasdonttouchC + ' <br /> ' +
+        'Date: ' + antennasdonttouchD.value + ' <br /> ' +
+        'Checked by : ' + antennasdonttouchT.value + ' <br /> ' +
+
+
+        '<h2>Infrared sensing and Vision Systems</h2><br /> ' +
+
+        '<br />Check the lenses or glass of the IS and VS and lights. ' + checklensesR + '<br /> ' +
+        'Replaced: ' + checklensesC + ' <br /> ' +
+        'Date: ' + checklensesD.value + ' <br /> ' +
+        'Checked by : ' + checklensesT.value + ' <br /> ' +
+
+        '<br />Infrared Sensing ' + infraredsensingR + '<br /> ' +
+        'Replaced: ' + infraredsensingC + ' <br /> ' +
+        'Date: ' + infraredsensingD.value + ' <br /> ' +
+        'Checked by : ' + infraredsensingT.value + ' <br /> ' +
+
+        '<br />Vision System ' + visionsystemR + '<br /> ' +
+        'Replaced: ' + visionsystemC + ' <br /> ' +
+        'Date: ' + visionsystemD.value + ' <br /> ' +
+        'Checked by : ' + visionsystemT.value + ' <br /> ' +
+
+        '<br />Lights ' + lightsR + '<br /> ' +
+        'Replaced: ' + lightsC + ' <br /> ' +
+        'Date: ' + lightsD.value + ' <br /> ' +
+        'Checked by : ' + lightsT.value + ' <br /> ' +
+
+
+        '<h2>Gimbal (camera)</h2><br /> ' +
+
+        '<br />The gimbal appears intact and can rotate smoothly in all the three axes. ' + rotatesmoothlyR + '<br /> ' +
+        'Replaced: ' + rotatesmoothlyC + ' <br /> ' +
+        'Date: ' + rotatesmoothlyD.value + ' <br /> ' +
+        'Checked by : ' + rotatesmoothlyT.value + ' <br /> ' +
+
+        '<br />The lens in clean. ' + cleanlensR + '<br /> ' +
+        'Replaced: ' + cleanlensC + ' <br /> ' +
+        'Date: ' + cleanlensD.value + ' <br /> ' +
+        'Checked by : ' + cleanlensT.value + ' <br /> ' +
+
+        '<br />Dampeners have no crack or split. ' + dampenersR + '<br /> ' +
+        'Replaced: ' + dampenersC + ' <br /> ' +
+        'Date: ' + dampenersD.value + ' <br /> ' +
+        'Checked by : ' + dampenersT.value + ' <br /> ' +
+
+        '<br />Anti-drop rope is not damaged and secure. ' + antidropropeR + '<br /> ' +
+        'Replaced: ' + antidropropeC + ' <br /> ' +
+        'Date: ' + antidropropeD.value + ' <br /> ' +
+        'Checked by : ' + antidropropeT.value + ' <br /> ' +
+
+        '<br />Gimbal connector is secure. ' + connectorR + '<br /> ' +
+        'Replaced: ' + connectorC + ' <br /> ' +
+        'Date: ' + connectorD.value + ' <br /> ' +
+        'Checked by : ' + connectorT.value + ' <br /> ' +
+
+
+        '<h2>Remote Controller</h2><br /> ' +
+
+        '<br />Control sticks are centered in neutral position. ' + controlsticksR + '<br /> ' +
+        'Replaced: ' + controlsticksC + ' <br /> ' +
+        'Date: ' + controlsticksD.value + ' <br /> ' +
+        'Checked by : ' + controlsticksT.value + ' <br /> ' +
+
+        '<br />No foreign object (E.g., sand or soil) ' + noforeignobjectR + '<br /> ' +
+        'Replaced: ' + noforeignobjectC + ' <br /> ' +
+        'Date: ' + noforeignobjectD.value + ' <br /> ' +
+        'Checked by : ' + noforeignobjectT.value + ' <br /> ' +
+
+        '<br />Full ranges of motion in all channels. ' + fullrangeR + '<br /> ' +
+        'Replaced: ' + fullrangeC + ' <br /> ' +
+        'Date: ' + fullrangeD.value + ' <br /> ' +
+        'Checked by : ' + fullrangeT.value + ' <br /> ' +
+
+        '<br />Screen on the remote controller is clean and dry. ' + screenR + '<br /> ' +
+        'Replaced: ' + screenC + ' <br /> ' +
+        'Date: ' + screenD.value + ' <br /> ' +
+        'Checked by : ' + screenT.value + ' <br /> ' +
+
+
+        '<h2>Flight area</h2><br /> ' +
+        
+        '<br />Dangers and obstacles: ' + danger.value + '<br /> ' +
+        'Landowners and neighbours: ' + landowners.value + '<br /> ' +
+        'Buffer zone: ' + bufferzone.value + '<br />' +
+        'Visitors: ' + visitors.value + '<br />' +
+
+        '<h2>Checklist when powered on! Technical precheck</h2><br /> ' +
+        
+        '<h4>Remote controller</h4><br /> ' +
+
+        '<br />Confirm the control stick mode (Mode 1/2/3): Mode ' + controlstickon.value + '<br /> ' +
+        '<br />Check in the control stick calibration page: ' + controlstickcalib.value + '<br /> ' +
+        '<br />Proportion of control lever is correct: ' + controlleverprop.value + '<br /> ' +
+        '<br />Remote controller has sufficient power: ' + remotepoweron.value + '<br /> ' +
+        '<br />Battery is firmly installed: ' + batteryinstallon.value + '<br /> ' +
+        '<br />Confirm that the channel used is automatic or custom: ' + channelon.value + '<br /> ' +
+        '<br />Choose the operation frequency and channel according to the signal to noise ration: ' + opfreqon.value + '<br /> ' +
+
+
+        '<h4>Battery</h4><br /> ' +
+
+        '<br />All batteries, including Intelligent Flight Batteries and remote controller batteries, are fully charged: ' + batteryintellichargedon.value + '<br /> ' +
+        '<br />The intelligent Fight Batteries are firmly installed: ' + batteryintelliinstallon.value + '<br /> ' +
+        '<br />Check the battery level and voltage of each battery cell in the battery page in the app to make sure they are normal: ' + batteryintellicellon.value + '<br /> ' +
+
+
+        '<h4>Flight Parameter Configuration</h4><br /> ' +
+
+        '<br />RTH setting: ' + rthsetting.value + '<br /> ' +
+        '<br />RTH altitude: ' + rthaltitude.value + '<br /> ' +
+        '<br />Height limits: ' + heightlimits.value + '<br /> ' +
+        '<br />Distance limits: ' + distancelimits.value + '<br /> ' +
+        '<br />"Failsafe"-action of the aircraft is what fits your mission: ' + failsafeaction.value + '<br /> ' +
+        '<br />Obstacle sensing function are setup correctly: ' + obstaclesensing.value + '<br /> ' +
+        '<br />View the module auto-check information for errors: ' + moduleautocheck.value + '<br /> ' +
+        '<br />GNSS Positioning - There are at least 10 satellites and the aircraft works in P-mode: ' + tensatellites.value + '<br /> ' +
+        '<br />Enable RTK function: ' + rtkenable.value + '<br /> ' +
+        '<br />Select the correct base station and channel: ' + basestation.value + '<br /> ' +
+        '<br />Make sure that RTK positioning is in use: ' + rtkpositioning.value + '<br /> ' +
+        '<br />Check the RTK page if the heading and positioning are fixed: ' + rtkheading.value + '<br /> ' +
+
+
+        '<h4>Sensors</h4><br /> ' +
+
+        '<br />Data on each IMU is shown in the app: ' + imudata.value + '<br /> ' +
+        '<br />IMU can be performed successfully: ' + imuperform.value + '<br /> ' +
+        '<br />The heading of the compass matches the physical one: ' + compassheading.value + '<br /> ' +
+        '<br />Compass needle is stable: ' + compassneedle.value + '<br /> ' +
+        '<br />Compass calibration can be performed successfully: ' + compasscalibration.value + '<br /> ' +
+        '<br />Vision System in all directions are enabled with no error prompt: ' + visionsys.value + '<br /> ' +
+
+
+        '<h4>Top and bottom cooling fans</h4><br /> ' +
+
+        '<br />Check by careful touching or listening that the fans are operating normally and without abnormal noise. ' + coolingfans.value + '<br /> ' +
+
+
+        '<h4>Motor spin</h4><br /> ' +
+
+        '<br />Bind the remote controller and aircraft: ' + bindcontrolleraircraft.value + '<br /> ' +
+        '<br />Make sure the FPV camera display in the app works normally: ' + fpvcameramotor.value + '<br /> ' +
+        '<br />Perform a CSC - Combination Stick Command - to start the motors. NOTE: Stay away from the spinning motors and propellers to avoid injuries during the test: ' + cscon.value + '<br /> ' +
+        '<br />Motors start without noise: ' + motornoise.value + '<br /> ' +
+        '<br />No error prompt in the app: ' + noerror.value + '<br /> ' +
+        '<br />OBSERVE the motors to ensure that motors 1 and 3 rotate counterclockwise and motors 2 and 4 rotate clockwise. Perform this check either when starting or stopping the motors: ' + motorsrotate.value + '<br /> ' 
+        ;
+
+    //Construct the filename with todays date
+    var month =new Date(); //months from 1-12
+    month = month.getMonth()+1;
+    var day = new Date();
+    day = day.getUTCDate();
+    var year = new Date();
+    year = year.getUTCFullYear();
+    newdate = year + "_" + month + "_" + day;
+    const sFileName = newdate + '_part2.pdf'; // The file to save the data.
+
+    // The format of the file
+    const pageFormat = 'a4';
+    const pageOrient = 'p';
+
+    let pdfOptions = {
+    compress:true,
+    format:pageFormat,
+    hotfixes:['px_scaling'],
+    orientation:pageOrient,
+    unit:'px'
+    };
+
+    const { PDFDocument } = PDFLib;
+    window.html2canvas = html2canvas;
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF(pdfOptions);
+
+    const pageMarginX = 60;
+    const pageMarginY = 90;
+    const pageWidth   = doc.internal.pageSize.width - (pageMarginX * 2);
+
+    // bug: if document created from HTML is > 1 page, adobe reader reports page errors starting with page 2
+    // fix: manually add pages that would exist if HTML is rendered (must be added before rendering the HTML!)
+    // ugly soluton: render document once, count pages, render again with the required pages added beforehand
+    new jsPDF(pdfOptions).html(data,{
+    autoPaging:'text',
+    margin:[pageMarginY,pageMarginX,pageMarginY,pageMarginX],
+    width:pageWidth,
+    windowWidth:pageWidth,
+    callback:res => {
+        // add pages that are required by the rendered HTML (start with page 2)
+        for(let i = 2, j = res.internal.getNumberOfPages(); i <= j; i++) {
+        doc.addPage(pageFormat,pageOrient);
+        }
+
+        // render document proper
+        doc.html(data,{
+        autoPaging:'text',
+        margin:[pageMarginY,pageMarginX,pageMarginY,pageMarginX],
+        width:pageWidth,
+        windowWidth:pageWidth,
+        callback:function() {
+            doc.save(sFileName);
+        }
+        });
+    }
+    });
+  
+};
+
+</script>
+</body>
+</html>

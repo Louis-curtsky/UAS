@@ -1,0 +1,91 @@
+.flightNote {
+    font-family: sans-serif;
+    margin: 0 50px;
+    background-color: #3f0404;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .app {
+    position: fixed;
+    left: 2vh;
+    top: 2vh;
+    background-color: #fff;
+    width: 450px;
+    height: auto;
+    border: 5px solid #1449b3;
+    border-radius: 8px;
+    padding: 15px;
+    color: #1449b3;
+  }
+
+  #addNew {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(40, 110, 20, 0.35);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .fa-plus {
+    background-color: #203687;
+    padding: 3px;
+    border-radius: 3px;
+  }
+
+  #msg{
+    color:red;
+  }
+
+  #tasks {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  
+  #tasks div {
+    border: 1px solid #1449b3;
+    background-color: #e2eede;
+    border-radius: 6px;
+    padding: 5px;
+    display: grid;
+    gap: 4px;
+  }
+
+  #tasks div .options {
+    justify-self: center;
+    display: flex;
+    gap: 20px;
+  }
+  
+  #tasks div .options i {
+    cursor: pointer;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2;
+  }
+
+  .confirm-box {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 25%;
+    text-align: center;
+    background: white;
+  }
+
+  .close {
+    cursor: pointer;
+  }

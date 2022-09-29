@@ -3,9 +3,9 @@ html {
 }
 
 body {
-/*     background-color: #336D9F; */
-/*     background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%); */
-background-image: url(/css/images/ian-usher-JPAfSd_acI8-unsplash.jpg);
+    background-color: #336D9F;
+    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+    /* background-image: url(/css/images/alessio-soggetti-rSFxBGpnluw-unsplash.jpg); */
     font-family: 'Roboto', sans-serif;
     color: white;
     font-size: 1.125rem;
