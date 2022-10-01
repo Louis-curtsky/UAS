@@ -107,7 +107,7 @@ let createTasks = () => {
   let editTask = (e) => {
     action.innerHTML="Flight NotePad - Edit";
     let selectedTask = e.parentElement.parentElement;
-  
+  console.log(selectedTask.innerHTML);
     textInput.value = selectedTask.children[0].innerHTML;
     dateInput.value = selectedTask.children[1].innerHTML;
     textarea.value = selectedTask.children[2].innerHTML;

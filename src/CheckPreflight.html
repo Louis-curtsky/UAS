@@ -26,20 +26,43 @@
   <body style="color:darkcyan">
     <div class="flightNotes">
       <div class="app">
-        <h4 class="mb-3">Firware Check</h4>
-      
-        <div id="addNew" data-bs-toggle="modal" data-bs-target="#form">
-          <span>Consistency</span>
-          <i class="fas fa-plus"></i>
+        <h4 class="mb-3">Check List 2 - Filmware</h4>
+        <div>Consistency</div>
+          <span>1-</span>
+          <div class="btn-group" role="group">
+          <input class="form-check-input" type="radio" name="flexRadioDefault1" id="check1Yes" value="">
+          <label class="form-check-label  " for="check1Yes" >Yes</label>
+          <input class="form-check-input" type="radio" name="flexRadioDefault1" id="check1No"  value="">
+          <label class="form-check-label  " for="check1No" >No</label>
+          <Button class="btn-secondary" disabled data-toggle="tooltip" data-placement="top" 
+          title="Connect the remote controller to the internet, and then launch the app. 
+          Make sure that the app and the firmware versions of the aircraft, 
+          remote controller, payloads and batteries match. Otherwise, 
+          the aircraft may not launch or risks may occur.	">Notes</Button>
+          <div id="addNew" data-bs-toggle="modal" data-bs-target="#form1">-
         </div>
-        
-        <h5 class="text-center my-3">Check List</h5>
+        </div>
+        <div>
+          <span>2-</span>
+          <div class="btn-group" role="group">
+            <input class="form-check-input" type="radio" name="flexRadioDefault2" id="check2Yes" value="">
+            <label class="form-check-label  " for="check2Yes" >Yes</label>
+            <input class="form-check-input" type="radio" name="flexRadioDefault2" id="check2No"  value="">
+            <label class="form-check-label  " for="check2No" >No</label>
+            <Button class="btn-secondary" disabled data-toggle="tooltip" data-placement="top" 
+            title="Insert all Intelligent Flight Batteries into the aircraft to make sure that all of their 
+            firmware verions are up to date.">Notes</Button>
+            <div id="addNewA" data-bs-toggle="modal" data-bs-target="#form2">-
+            </div>
+          </div>
+            
+        </div>       
         <div id="tasks"></div>  
       </div>
-      <!-- Modal -->
+      <!-- Modal 1-->
       <form
         class="modal fade"
-        id="form"
+        id="form1"
         tabindex="-1"
         aria-labelledby="notePadLabel"
         aria-hidden="true"
@@ -47,7 +70,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="notePadLabel" style="color:blue">Firmware Check List</h5>
+              <h5 class="modal-title" id="notePadLabel" style="color:blue">Firmware Consistency-1</h5>
               <button
                 type="button"
                class="btn-close"
@@ -58,52 +81,38 @@
             <div class="modal-body">
               <table>
               <tbody>
-                <tr>
-                <p>Connect the remote controller to the internet, and then launch the app. 
-                Make sure that the app and the firmware versions of the aircraft, 
-                remote controller, payloads and batteries match. Otherwise, 
-                the aircraft may not launch or risks may occur.	 </p>
-                </tr>
+                <tr><th>  <input type="text" class="form-control" name="" id="textInput"/></th></tr>
                 <tr>
                   <td>
-                    <div id="msg"></div>
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="check1Yes" value="yes">
-                    <label class="form-check-label  " for="check1Yes" >Yes</label>
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="check1No" value="no">
-                    <label class="form-check-label  " for="check1No" >No</label>
-                  </td>
-                <tr>
-                  <td>
-                    <input class="form-check-input" type="checkbox" value="" id="check1Replace">
-                    <label class="form-check-label" for="check1Replace">
-                        Replaced
-                    </label>
-                  </td>
-                  <td>
+                    <div style="display:inline-flex">
+                    <div style="display:inline-flex">
+                      <label class="form-check-label" for="check1Replace">
+                          Replaced
+                      </label>
+                      <input class="form-check-input" type="checkbox" value="" id="check1Replace" style="margin-left:5px">
+                    </div>
+                    <div style="display:inline-flex; margin-left: 10px;">
+                      <label class="form-check-label" for="check1ReplaceDate">Date Replaced </label>
                       <input type="date" class="form-control" name="check1ReplaceDate" id="dateInput" />
+                    </div>
+                    </div>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <span>Insert all Intelligent Flight Batteries into the aircraft to make sure that all of their firmware verions are up to date.</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="check2Yes" value="yes">
-                    <label class="form-check-label  " for="check1Yes" >Yes</label>
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="check2No" value="no">
-                    <label class="form-check-label  " for="check1No" >No</label>
-                  </td>
-                  <td>
+                    Notes
                   <textarea
                     name=""
                     class="form-control"
                     id="textarea"
-                    cols="20"
+                    cols="60"
                     rows="2"
                   ></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div id="msg"></div>
                   </td>
                 </tr>
                   </tbody>
@@ -122,6 +131,78 @@
         </div> 
               <!-- End Modal Modal dialogue --> 
       </form>
+
+           <!-- Modal 2-->
+           <form
+           class="modal fade"
+           id="form2"
+           tabindex="-1"
+           aria-labelledby="notePadLabel"
+           aria-hidden="true"
+         >
+           <div class="modal-dialog" role="document">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h5 class="modal-title" id="notePadLabel" style="color:blue">Firmware Consistency-2</h5>
+                 <button
+                   type="button"
+                  class="btn-close"
+                   data-bs-dismiss="modal"
+                   aria-label="Close"
+                 ></button>
+               </div>
+               <div class="modal-body">
+                 <table>
+                 <tbody>
+                   <tr>
+                     <td>
+                       <div style="display:inline-flex">
+                       <div style="display:inline-flex">
+                         <label class="form-check-label" for="check1Replace">
+                             Replaced
+                         </label>
+                         <input class="form-check-input" type="checkbox" value="" id="check1Replace" style="margin-left:5px">
+                       </div>
+                       <div style="display:inline-flex; margin-left: 10px;">
+                         <label class="form-check-label" for="check1ReplaceDate">Date Replaced </label>
+                         <input type="date" class="form-control" name="check1ReplaceDate" id="dateInput" />
+                       </div>
+                       </div>
+                     </td>
+                   </tr>
+                   <tr>
+                     <td>
+                       Notes
+                     <textarea
+                       name=""
+                       class="form-control"
+                       id="textarea"
+                       cols="60"
+                       rows="2"
+                     ></textarea>
+                     </td>
+                   </tr>
+                   <tr>
+                     <td>
+                       <div id="msg"></div>
+                     </td>
+                   </tr>
+                     </tbody>
+                     </table>
+               </div> 
+               <!-- //End Modal Body -->
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                 Close
+                 </button>
+                 <button type="submit" id="add" class="btn btn-primary">Save</button>
+               </div> 
+               <!-- // End Modal footer -->
+             </div>
+                 <!-- End Modal Modal Content -->
+           </div> 
+                 <!-- End Modal Modal dialogue --> 
+         </form>
     </div>
     <script src="../js/Firmware.js" crossorrigin="anonymous"></script>
   </body>

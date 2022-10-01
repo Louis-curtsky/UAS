@@ -23,13 +23,26 @@
   }
 
   #addNew {
-    display: flex;
-    justify-content: space-between;
+    display: inline-block;
+    justify-content:right;
     align-items: center;
     background-color: rgba(40, 110, 20, 0.35);
     padding: 5px 10px;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: none;
+  }
+
+  #textInput{
+    cursor: none;
+  }
+  #addNewA {
+    display: inline-block;
+    justify-content:right;
+    align-items: center;
+    background-color: rgba(40, 110, 20, 0.35);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: none;
   }
   .fa-plus {
     background-color: #203687;
@@ -89,3 +102,4 @@
   .close {
     cursor: pointer;
   }
+
