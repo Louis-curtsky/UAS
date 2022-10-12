@@ -103,3 +103,10 @@
     cursor: pointer;
   }
 
+leftside{
+  display:inline-flex;
+}
+
+rightside{
+  display:inline-flex;
+}

@@ -1,22 +1,30 @@
-let form = document.getElementById("form1");
+let form1 = document.getElementById("form1");
 let form2 = document.getElementById("form2");
-let textInput = document.getElementById("textInput");
 let check1Yes = document.getElementById("check1Yes");
 let check1No = document.getElementById("check1No");
+
 let check2Yes = document.getElementById("check2Yes");
 let check2No = document.getElementById("check2No");
+
+let textInput = document.getElementById("textInput");
+
 let dateInput = document.getElementById("dateInput");
 let textarea = document.getElementById("textarea");
+
+let dateInput2 = document.getElementById("dateInput2");
+let textarea2= document.getElementById("text2area");
+
 let msg = document.getElementById("msg");
 let tasks = document.getElementById("tasks");
-let add = document.getElementById("add");
+let add1 = document.getElementById("add1");
+let add2 = document.getElementById("add2");
 let action = document.getElementById("notePadLabel");
 let notes = document.getElementById("Notes");
 let btnNote = document.getElementById("consistency");
 let addNew = document.getElementById("addNew");
 let addNewA = document.getElementById("addNewA");
 let countTask = 0;
-let stop1 = false;
+let position = 0;
 
 //Check 1yesno
 check1No.onclick = check1Click;
@@ -25,20 +33,26 @@ check1Yes.onclick = check1Click;
 check2No.onclick = check2Click;
 check2Yes.onclick = check2Click;
 
+form1.addEventListener("submit",  (e) => {
+  e.preventDefault();
+  if (check1No){
+    formValidation();
+  }
+});
+
 function check1Click(){
   if (check1Yes.checked)
   {
     addNew.innerHTML="-";
     addNew.style.cursor="none";
-    console.log("1=Yes");
   }
   else
   {
     addNew.innerHTML="Click";
     addNew.style.cursor="pointer";
     countTask=1;
+    position++;
     textInput.value=countTask;
-    console.log("textInput:"+textInput.value);
   }
 } // End check1Click
 
@@ -51,17 +65,20 @@ function check2Click(){
   }
   else
   {
+    form2.addEventListener("submit",  (e) => {
+      e.preventDefault();
+      if (check2No.checked)
+      formValidation();
+    });
     addNewA.innerHTML="Click";
     addNewA.style.cursor="pointer";
     countTask=2;
+    position++;
     textInput.value=countTask;
-    stop1 = true;
-    console.log("textInput:"+textInput.value);
   }
 } // End check1Click
 
-
-
+console.log("postion:"+ position);
 // set date initialize
 function setDate(){
 var now = new Date();
@@ -77,54 +94,61 @@ console.log(today);
 };
 
 
-  form.addEventListener("submit",(e) => {
-    e.preventDefault();
-    if (stop1===false)
-    {
-      formValidation()
-    } 
-    console.log("form1 listening...");
-  });
-
  // End form listening
 
 
-  form2.addEventListener("submit", (e) => {
-    e.preventDefault();
-    formValidation()
-    console.log("form2 listening...");
-  });
-
-// End form listening
-
   let formValidation = () => {
       setDate();
-        acceptData();
-        add.setAttribute("data-bs-dismiss", "modal");
-        add.click();
-    
+      if (countTask===1)
+      {
+        acceptData1();
+        add1.setAttribute("data-bs-dismiss", "modal");
+        add1.click();
         (() => {
-          add.setAttribute("data-bs-dismiss", "");
+          add1.setAttribute("data-bs-dismiss", "");
         })();
-      console.log("Form Validated!!!");
+        countTask=0;
+      }
+      if (countTask===2)
+      {
+        acceptData2();
+        add2.setAttribute("data-bs-dismiss", "modal");
+        add2.click();
+        (() => {
+          add2.setAttribute("data-bs-dismiss", "");
+        })();
+        countTask=0;
+      }
       msg.innerHTML = "";
   };
 //End formValidation
 
 let data = [];
 
-let acceptData = () => {
+let acceptData1 = () => {
   data.push({
     text: textInput.value,
+    datapos: position,
     date: dateInput.value,
     description: textarea.value,
   });
   confirmAction();
-  localStorage.setItem("data", JSON.stringify(data));
-  console.log("accepData: "+data.description);
 //  createTasks();
 };
-// end accept Data
+// end accept Data 1
+
+let acceptData2 = () => {
+  console.log("acceptData2: "+textarea2.value);
+  data.push({
+    text: textInput.value,
+    datapos: position,
+    date: dateInput2.value,
+    description: textarea2.value,
+  });
+  confirmAction();
+//  createTasks();
+};
+// end accept Data 1
 
 let createTasks = () => {
     action.innerHTML="Firmware Check List";
@@ -132,6 +156,7 @@ let createTasks = () => {
     data.map((x, y) => {
       return (tasks.innerHTML += `
       <div id=${y}>
+            <span >No: ${x.datapos}</span>
             <span class="fw-bold">${x.text}</span>
             <span class="small text-secondary">${x.date}</span>
             <p>${x.description}</p>
@@ -164,21 +189,52 @@ let createTasks = () => {
     textInput.value = "";
     dateInput.value = "";
     textarea.value = "";
-    
+    dateInput2.value = "";
+    textarea2.value = "";
+    if (countTask === 1)
+    {
+      check1No.disabled = true;
+      check1Yes.disabled = true;
+      addNew.style.cursor="none";
+    } 
+    if (countTask === 2)
+    {
+      check2No.disabled = true;
+      check2Yes.disabled = true;
+      addNewA.style.cursor="none";
+    } 
+    countTask=0;
+    if (position>2)
+    {
+      position = 0;
+    }
   }; // end f.resetForm
 
   let editTask = (e) => {
     action.innerHTML="Edit";
     let selectedTask = e.parentElement.parentElement;
 
-  console.log("Edit= e:"+ e.parentElement.innerHTML);
-    textInput.value = selectedTask.children[0].innerHTML;
-  //  countTask = selectedTask.children[0].innerHTML;
-    dateInput.value = selectedTask.children[1].innerHTML;
-    textarea.value = selectedTask.children[2].innerHTML;
+  // console.log("Edit= e:"+ e.parentElement.innerHTML);
   
-    e.parentElement.parentElement.remove();
+  for (i=0; i<4; i++){
+    console.log("Edit {"+i+"}:"+selectedTask.children[i].innerHTML);
+  }
+  
+  datapos = selectedTask.children[0].innerHTML;
+  textInput.value = selectedTask.children[1].innerHTML;
+  dateInput.value = selectedTask.children[2].innerHTML;
+  textarea.value = selectedTask.children[3].innerHTML;
+  if (e.parentElement.parentElement===1){
+      countTask=1;
+  }
+  
+  if (e.parentElement.parentElement===1===2){
+      countTask=2;
+  }
+ //  e.parentElement.parentElement.remove();
+    selectedTask.remove();
     data.splice(e.parentElement.parentElement.id, 1);
+ //   console.log("Edit Data:"+JSON.stringify(data));
     localStorage.setItem("data", JSON.stringify(data));
   }; // End of Edit function
 
@@ -191,11 +247,15 @@ let createTasks = () => {
   // Confirmation start
 
   function confirmAction() {
-    let confirmAction = confirm("Are you sure to execute this action?");
-    if (confirmAction) {
-      createTasks()
-    } else {
-      alert("Action canceled");
+    if (countTask != 0)
+    {
+      let confirmAction = confirm("Are you sure to execute this action?");
+      if (confirmAction) {
+        createTasks()
+        localStorage.setItem("data", JSON.stringify(data));
+      } else {
+        alert("Action canceled");
+      }
     }
   }
 
