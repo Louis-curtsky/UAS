@@ -253,11 +253,24 @@ let createTasks = () => {
       if (confirmAction) {
         createTasks()
         localStorage.setItem("data", JSON.stringify(data));
+        storeCsv()
       } else {
         alert("Action canceled");
       }
     }
   }
+
+function storeCsv(){
+  var output="";
+  for (i=1; i++; i>2){
+    if (textInput ===1) {
+      console.log(textInput.value);
+      output += textInput.value + ","
+      + dateInput + ","
+      + textarea.value + "\n";
+    } 
+  }
+}
 
   function showConfirmBox() {
     document.getElementById("overlay").hidden = false;
