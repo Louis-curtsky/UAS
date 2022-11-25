@@ -59,7 +59,6 @@ function check1Click(){
 function check2Click(){
   if (check2Yes.checked)
   {
-    console.log("2=Yes");
     addNewA.innerHTML="-";
     addNewA.style.cursor="none";
   }
@@ -78,7 +77,7 @@ function check2Click(){
   }
 } // End check1Click
 
-console.log("postion:"+ position);
+// console.log("postion:"+ position);
 // set date initialize
 function setDate(){
 var now = new Date();
@@ -90,12 +89,9 @@ if (day < 10)
     day = "0" + day;
 var today = now.getFullYear() + '-' + month+'-'+ day;
 dateInput.value= today;
-console.log(today);
 };
 
-
  // End form listening
-
 
   let formValidation = () => {
       setDate();
@@ -138,7 +134,7 @@ let acceptData1 = () => {
 // end accept Data 1
 
 let acceptData2 = () => {
-  console.log("acceptData2: "+textarea2.value);
+//  console.log("acceptData2: "+textarea2.value);
   data.push({
     text: textInput.value,
     datapos: position,
@@ -156,16 +152,19 @@ let createTasks = () => {
     data.map((x, y) => {
       return (tasks.innerHTML += `
       <div id=${y}>
-            <span >No: ${x.datapos}</span>
-            <span class="fw-bold">${x.text}</span>
-            <span class="small text-secondary">${x.date}</span>
-            <p>${x.description}</p>
-    
-            <span class="options">
-              <i onClick= "editTask(this)" data-bs-toggle="modal" data-bs-target="#form${countTask}" class="fas fa-edit"></i>
-              <i onClick ="deleteTask(this);createTasks()" class="fas fa-trash-alt"></i>
-            </span>
-          </div>
+
+      <span  class="fw-bold">Check: ${x.text}</span>
+      
+      <span class="small text-secondary">${x.date}</span>
+      <p>${x.description}</p>
+      <span style="display:inline-flex">
+        <span class="text-warning">Row: ${x.datapos}</span>
+        <span class="options" style="margin-left: 250px">
+          <i onClick= "editTask(this)" data-bs-toggle="modal" data-bs-target="#form${countTask}" class="fas fa-edit"></i>
+          <i onClick ="deleteTask(this);createTasks()" class="fas fa-trash-alt"></i>
+        </span>
+      </span>
+      </div>
       `);
     });
     resetForm();
@@ -181,8 +180,6 @@ let createTasks = () => {
     } else {
       alert("Action canceled");
     }
-  
-    console.log(data);
   }; // End of Delete function
 
   let resetForm = () => {
@@ -191,6 +188,7 @@ let createTasks = () => {
     textarea.value = "";
     dateInput2.value = "";
     textarea2.value = "";
+
     if (countTask === 1)
     {
       check1No.disabled = true;
@@ -208,32 +206,45 @@ let createTasks = () => {
     {
       position = 0;
     }
+
   }; // end f.resetForm
 
   let editTask = (e) => {
     action.innerHTML="Edit";
-    let selectedTask = e.parentElement.parentElement;
+    let selectedTask = e.parentElement.parentElement.parentElement;
+//    let selectedTask = e.parentElement;
 
-  // console.log("Edit= e:"+ e.parentElement.innerHTML);
+ // console.log("Edit= e:"+ e.parentElement.innerHTML);
+ //console.log("Edit= e:"+selectedTask.innerHTML);
   
-  for (i=0; i<4; i++){
+/*   for (i=0; i<4; i++){
     console.log("Edit {"+i+"}:"+selectedTask.children[i].innerHTML);
   }
-  
-  datapos = selectedTask.children[0].innerHTML;
-  textInput.value = selectedTask.children[1].innerHTML;
-  dateInput.value = selectedTask.children[2].innerHTML;
-  textarea.value = selectedTask.children[3].innerHTML;
-  if (e.parentElement.parentElement===1){
-      countTask=1;
+   */
+  const getInput = selectedTask.children[0].innerHTML;
+  console.log(getInput);
+
+  if (getInput==="Check: 1"){
+    textInput.value = "1";
+    dateInput.value = selectedTask.children[1].innerHTML;
+    textarea.value = selectedTask.children[2].innerHTML;
+    position = selectedTask.children[3].innerHTML;
+    countTask=1;
   }
   
-  if (e.parentElement.parentElement===1===2){
-      countTask=2;
+  if (getInput==="Check: 2"){
+    textInput.value = "2";
+    dateInput2.value = selectedTask.children[1].innerHTML;
+    textarea2.value = selectedTask.children[2].innerHTML;
+    countTask=2;
   }
- //  e.parentElement.parentElement.remove();
-    selectedTask.remove();
-    data.splice(e.parentElement.parentElement.id, 1);
+  const getPosition = selectedTask.children[3].innerHTML;
+  position = parseInt(getPosition.slice(41,42));   
+  console.log("Position: "+position); 
+  //  e.parentElement.parentElement.remove();
+  selectedTask.remove();
+  console.log(data.splice(e.parentElement.parentElement, 1));
+    data.splice(e.parentElement.parentElement, 1);
  //   console.log("Edit Data:"+JSON.stringify(data));
     localStorage.setItem("data", JSON.stringify(data));
   }; // End of Edit function
@@ -251,9 +262,9 @@ let createTasks = () => {
     {
       let confirmAction = confirm("Are you sure to execute this action?");
       if (confirmAction) {
-        createTasks()
+        storeCsv();
+        createTasks();
         localStorage.setItem("data", JSON.stringify(data));
-        storeCsv()
       } else {
         alert("Action canceled");
       }
@@ -261,15 +272,38 @@ let createTasks = () => {
   }
 
 function storeCsv(){
-  var output="";
-  for (i=1; i++; i>2){
-    if (textInput ===1) {
-      console.log(textInput.value);
-      output += textInput.value + ","
-      + dateInput + ","
-      + textarea.value + "\n";
-    } 
+var outPut=[];
+
+if (countTask===1)
+{
+  outPut = "Check, Date, Notes," +
+  (textInput.value) + ","
+    + (dateInput.value) + ","
+    + (textarea.value) + "\n\r";
+}
+if (countTask===2)
+{
+  outPut = "Check, Date, Notes," +
+  (textInput.value) + ","
+    + (dateInput2.value) + ","
+    + (textarea2.value) + "\n\r";
   }
+  console.log(outPut);
+  if (window.navigator.msSaveOrOpenBlob) {
+    var blob = new Blob([decodeURIComponent(encodeURIComponent(outPut))], {
+      type: "text/csv;charset=utf-8;"
+    });
+    var fname= 'firmCheck'+countTask+'.csv';
+    window.navigator.msSaveOrOpenBlob(blob, fname);
+} else {
+    var a         = document.createElement('a');
+    a.href        = 'data:attachment/csv,' +  encodeURIComponent(outPut);
+    a.target      = '_blank';
+    a.download    = 'firmCheck'+countTask+'.csv';
+    document.body.appendChild(a);
+    a.click();
+}
+
 }
 
   function showConfirmBox() {
